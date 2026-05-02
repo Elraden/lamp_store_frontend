@@ -1,0 +1,98 @@
+﻿.hero {
+  border-radius: 22px;
+  background: linear-gradient(135deg, #13202b, #ffa300);
+  color: #fff;
+  padding: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: 0 18px 42px rgba(255, 163, 0, 0.22);
+}
+
+.hero h1,
+.hero p {
+  margin: 0;
+}
+
+.hero h1 {
+  margin: 6px 0 10px;
+  font-size: clamp(2rem, 1.4rem + 1vw, 2.8rem);
+}
+
+.hero p {
+  max-width: 680px;
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.45;
+}
+
+.eyebrow {
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hero button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #13202b;
+  padding: 0 18px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.benefits article {
+  border-radius: 18px;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.benefits strong {
+  font-size: 1.8rem;
+  color: #ffa300;
+}
+
+.benefits span {
+  color: #64748b;
+}
+
+.productsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.productsSection h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .benefits,
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+}

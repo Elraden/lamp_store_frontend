@@ -1,0 +1,22 @@
+﻿.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.separator {
+  color: #94a3b8;
+}
+
+.crumb a {
+  color: #ffa300;
+  font-weight: 700;
+}

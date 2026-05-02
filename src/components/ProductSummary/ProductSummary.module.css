@@ -1,0 +1,62 @@
+﻿.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.2rem, 1.6rem + 1vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.article,
+.description {
+  margin: 0;
+  font-size: 1.03rem;
+}
+
+.ratingRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.stars {
+  font-size: 1.25rem;
+  display: inline-flex;
+  gap: 4px;
+  color: #f59e0b;
+}
+
+.favoriteButton {
+  border: 1px solid #d7deea;
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: #fff;
+  font-weight: 600;
+  color: #ffa300;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.favoriteButton:hover {
+  border-color: #ffa300;
+  background: #fff3d6;
+}
+
+.favoriteButtonActive {
+  border-color: #ffa300;
+  background: #ffa300;
+  color: #13202b;
+  box-shadow: 0 10px 24px rgba(255, 163, 0, 0.24);
+}
+
+.favoriteButtonActive:hover {
+  background: #e08f00;
+  color: #13202b;
+}

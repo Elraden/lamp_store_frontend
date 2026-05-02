@@ -1,0 +1,96 @@
+.hero {
+  border-radius: 18px;
+  background: linear-gradient(135deg, #13202b, #ffa300);
+  color: #fff;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: 0 18px 42px rgba(255, 163, 0, 0.22);
+}
+
+.hero h1,
+.hero p,
+.emptyState h2,
+.emptyState p {
+  margin: 0;
+}
+
+.hero h1 {
+  margin: 6px 0 8px;
+  font-size: clamp(2rem, 1.5rem + 1vw, 2.8rem);
+  line-height: 1;
+}
+
+.hero p:not(.eyebrow) {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.hero > svg {
+  width: 44px;
+  height: 44px;
+  color: #fff3d6;
+}
+
+.eyebrow {
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.emptyState {
+  border-radius: 20px;
+  background: #fff;
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+.emptyState > svg {
+  width: 34px;
+  height: 34px;
+  color: #ffa300;
+}
+
+.emptyState p {
+  max-width: 520px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.emptyState a {
+  min-height: 42px;
+  border-radius: 999px;
+  background: #ffa300;
+  color: #13202b;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .hero {
+    align-items: flex-start;
+  }
+
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+}

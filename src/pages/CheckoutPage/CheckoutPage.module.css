@@ -1,0 +1,148 @@
+﻿.title {
+  margin: 0;
+  font-size: 1.9rem;
+  line-height: 1.1;
+}
+
+.checkoutLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 304px;
+  gap: 20px;
+  align-items: start;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel {
+  border: 0;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+.panel h2,
+.panel p {
+  margin: 0;
+}
+
+.panel h2 {
+  font-size: 1.15rem;
+  color: #13202b;
+}
+
+.panel p {
+  font-size: 1rem;
+  line-height: 1.28;
+}
+
+.twoColumns,
+.threeColumns {
+  display: grid;
+  gap: 18px;
+}
+
+.twoColumns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.threeColumns {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.panel label:not(.option):not(.consent) {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.panel label span {
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.panel input[type="text"],
+.panel input[type="tel"],
+.panel input[type="email"],
+.option,
+.consent,
+.submitButton {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid #d7deea;
+  border-radius: 14px;
+  background: #f8fafc;
+  padding: 0 14px;
+}
+
+.panel input::placeholder {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+.option,
+.consent {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  background: #fff;
+}
+
+.option input,
+.consent input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ffa300;
+  flex: 0 0 auto;
+}
+
+.consent {
+  min-height: 52px;
+}
+
+.consent span {
+  color: #334155;
+}
+
+.submitButton {
+  min-height: 52px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: #ffa300;
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(255, 163, 0, 0.24);
+}
+
+@media (max-width: 980px) {
+  .checkoutLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .twoColumns,
+  .threeColumns {
+    grid-template-columns: 1fr;
+  }
+}

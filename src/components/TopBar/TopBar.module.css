@@ -1,0 +1,72 @@
+﻿.topBar {
+  border: 0;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 12px 18px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: center;
+  color: #334155;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
+}
+
+.meta {
+  margin: 0;
+  font-size: 0.98rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.phone {
+  justify-self: center;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.callbackButton {
+  justify-self: center;
+  min-width: 154px;
+  border: 0;
+  border-radius: 999px;
+  background: #13202b;
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.callbackButton:hover {
+  background: #ffa300;
+  transform: translateY(-1px);
+}
+
+.topBar > :last-child {
+  justify-self: end;
+}
+
+@media (max-width: 900px) {
+  .topBar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .phone,
+  .callbackButton,
+  .topBar > :last-child {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 520px) {
+  .topBar {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+}

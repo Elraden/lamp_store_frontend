@@ -1,0 +1,95 @@
+﻿.panel {
+  border: 0;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.1);
+}
+
+.price {
+  margin: 0;
+  font-size: 2.45rem;
+  font-weight: 700;
+  text-align: right;
+  color: #13202b;
+}
+
+.stock {
+  margin: 0;
+  font-size: 0.98rem;
+  text-align: right;
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.counter {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  gap: 10px;
+}
+
+.counterButton,
+.counterValue {
+  height: 38px;
+  min-height: 38px;
+  border: 1px solid #d7deea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 0;
+  line-height: 1;
+}
+
+.counterButton {
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.counterButton svg {
+  display: block;
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+}
+
+.counterButton:hover {
+  background: #fff3d6;
+  transform: translateY(-1px);
+}
+
+.cartButton {
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  background: #ffa300;
+  color: #fff;
+  min-height: 42px;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(255, 163, 0, 0.24);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cartButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.cartButton:hover {
+  background: #e08f00;
+  transform: translateY(-1px);
+}
+
+.paymentNote {
+  margin: 0;
+  text-align: right;
+  color: #64748b;
+}

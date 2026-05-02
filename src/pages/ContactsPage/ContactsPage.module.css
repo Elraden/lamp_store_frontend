@@ -1,0 +1,116 @@
+﻿.hero {
+  border-radius: 22px;
+  background: linear-gradient(135deg, #263847, #ffa300);
+  color: #fff;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 18px 42px rgba(15, 118, 110, 0.18);
+}
+
+.hero > svg {
+  width: 44px;
+  height: 44px;
+}
+
+.hero h1,
+.hero p,
+.cards h2,
+.cards p,
+.mapHeader h2,
+.mapHeader p {
+  margin: 0;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 1.4rem + 1vw, 2.8rem);
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.cards article {
+  border-radius: 20px;
+  background: #fff;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+.cards article > svg {
+  width: 28px;
+  height: 28px;
+  color: #ffa300;
+}
+
+.cards a {
+  color: #ffa300;
+  font-weight: 800;
+}
+
+.cards p {
+  color: #64748b;
+}
+
+.mapSection {
+  border-radius: 22px;
+  background: #fff;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+.mapHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 6px;
+}
+
+.mapHeader > svg {
+  width: 30px;
+  height: 30px;
+  color: #ffa300;
+  flex: 0 0 auto;
+}
+
+.mapHeader h2 {
+  font-size: 1.35rem;
+}
+
+.mapHeader p {
+  margin-top: 4px;
+  color: #64748b;
+}
+
+.map {
+  width: 100%;
+  min-height: 360px;
+  border: 0;
+  border-radius: 18px;
+  background: #eef2f7;
+}
+
+@media (max-width: 720px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .map {
+    min-height: 300px;
+  }
+}

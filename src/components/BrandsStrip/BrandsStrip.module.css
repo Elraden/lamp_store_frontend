@@ -1,0 +1,42 @@
+﻿.section {
+  border: 1px solid #272727;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 18px 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2rem, 1.3rem + 0.9vw, 2.6rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.brandCard {
+  min-height: 110px;
+  border: 1px solid #272727;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(235, 230, 222, 0.92)),
+    #f2ede6;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
