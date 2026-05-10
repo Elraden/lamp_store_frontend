@@ -134,6 +134,18 @@
   box-shadow: 0 10px 24px rgba(255, 163, 0, 0.24);
 }
 
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.errorText {
+  border-radius: 12px;
+  background: #fff1f2;
+  color: #be123c;
+  padding: 12px 14px;
+}
+
 @media (max-width: 980px) {
   .checkoutLayout {
     grid-template-columns: 1fr;

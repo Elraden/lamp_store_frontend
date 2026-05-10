@@ -1,20 +1,10 @@
 import {
   ADD_TO_CART,
+  CLEAR_CART,
   DECREMENT_CART_ITEM,
   INCREMENT_CART_ITEM,
   REMOVE_CART_ITEM,
 } from "../actionTypes";
-import { catalogData } from "../../mocks/catalog";
-
-const productsById = [
-  catalogData.product,
-  ...catalogData.similarProducts,
-  ...catalogData.catalogProducts,
-  ...catalogData.checkoutItems,
-].reduce((accumulator, product) => {
-  accumulator[product.id] = product;
-  return accumulator;
-}, {});
 
 const calculateTotalCount = (items) =>
   items.reduce((total, item) => total + item.quantity, 0);
@@ -24,27 +14,36 @@ const buildState = (items) => ({
   totalCount: calculateTotalCount(items),
 });
 
-const initialState = buildState(catalogData.checkoutItems);
+const getStockLimit = (item) => (Number.isFinite(item.stock) ? item.stock : Infinity);
+
+const initialState = buildState([]);
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
-      const { productId, quantity } = action.payload;
-      const safeQuantity = Math.max(1, quantity);
+      const { product, quantity } = action.payload;
+      if (!product) {
+        return state;
+      }
+
+      const productId = product.id;
+      const stockLimit = getStockLimit(product);
+      const safeQuantity = Math.min(stockLimit, Math.max(1, quantity));
+
+      if (safeQuantity < 1) {
+        return state;
+      }
+
       const existingItem = state.items.find((item) => item.id === productId);
 
       if (existingItem) {
         return buildState(
           state.items.map((item) =>
-            item.id === productId ? { ...item, quantity: item.quantity + safeQuantity } : item,
+            item.id === productId
+              ? { ...item, quantity: Math.min(getStockLimit(item), item.quantity + safeQuantity) }
+              : item,
           ),
         );
-      }
-
-      const product = productsById[productId];
-
-      if (!product) {
-        return state;
       }
 
       return buildState([...state.items, { ...product, quantity: safeQuantity }]);
@@ -53,7 +52,9 @@ const cartReducer = (state = initialState, action) => {
     case INCREMENT_CART_ITEM:
       return buildState(
         state.items.map((item) =>
-          item.id === action.payload ? { ...item, quantity: item.quantity + 1 } : item,
+          item.id === action.payload
+            ? { ...item, quantity: Math.min(getStockLimit(item), item.quantity + 1) }
+            : item,
         ),
       );
 
@@ -68,6 +69,9 @@ const cartReducer = (state = initialState, action) => {
 
     case REMOVE_CART_ITEM:
       return buildState(state.items.filter((item) => item.id !== action.payload));
+
+    case CLEAR_CART:
+      return buildState([]);
 
     default:
       return state;

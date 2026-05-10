@@ -46,6 +46,21 @@
   font-size: 0.95rem;
 }
 
+.processing {
+  border-color: #ffa300;
+  background: #fff7e6;
+}
+
+.success {
+  border-color: #16a34a;
+  background: #f0fdf4;
+}
+
+.danger {
+  border-color: #dc2626;
+  background: #fff1f2;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;

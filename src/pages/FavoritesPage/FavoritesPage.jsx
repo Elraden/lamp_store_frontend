@@ -26,8 +26,8 @@ function FavoritesPage() {
         .includes(normalizedQuery);
     });
 
-  const handleAddToCart = (productId) => {
-    dispatch(addToCart(productId, quantities[productId] ?? 1));
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product, quantities[product.id] ?? 1));
   };
 
   return (
@@ -52,7 +52,7 @@ function FavoritesPage() {
               quantity={quantities[item.id] ?? 1}
               onIncrement={() => dispatch(incrementQuantity(item.id))}
               onDecrement={() => dispatch(decrementQuantity(item.id))}
-              onAddToCart={() => handleAddToCart(item.id)}
+              onAddToCart={() => handleAddToCart(item)}
             />
           ))}
         </div>

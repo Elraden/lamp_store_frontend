@@ -15,8 +15,8 @@ function SalesPage() {
   const quantities = useSelector((state) => state.ui.quantities);
   const saleProducts = products.filter((product) => product.category === "Лампочки по акции");
 
-  const handleAddToCart = (productId) => {
-    dispatch(addToCart(productId, quantities[productId] ?? 1));
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product, quantities[product.id] ?? 1));
   };
 
   return (
@@ -65,7 +65,7 @@ function SalesPage() {
               quantity={quantities[item.id] ?? 1}
               onIncrement={() => dispatch(incrementQuantity(item.id))}
               onDecrement={() => dispatch(decrementQuantity(item.id))}
-              onAddToCart={() => handleAddToCart(item.id)}
+              onAddToCart={() => handleAddToCart(item)}
             />
           ))}
         </div>

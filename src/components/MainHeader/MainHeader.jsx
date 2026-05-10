@@ -12,13 +12,13 @@ import {
 import { NavLink } from "react-router-dom";
 import styles from "./MainHeader.module.css";
 
-const navConfig = {
-  Каталог: { to: "/", icon: faBagShopping, end: true },
-  Акции: { to: "/sales", icon: faPercent },
-  "О нас": { to: "/about", icon: faCircleInfo },
-  "Оплата и доставка": { to: "/checkout", icon: faTruckFast },
-  Контакты: { to: "/contacts", icon: faHeadset },
-};
+const navByPosition = [
+  { to: "/", icon: faBagShopping, end: true },
+  { to: "/sales", icon: faPercent },
+  { to: "/about", icon: faCircleInfo },
+  { to: "/payment-delivery", icon: faTruckFast },
+  { to: "/contacts", icon: faHeadset },
+];
 
 function MainHeader({ navLinks, favoriteCount, cartCount, searchQuery, onSearchChange }) {
   return (
@@ -28,8 +28,8 @@ function MainHeader({ navLinks, favoriteCount, cartCount, searchQuery, onSearchC
       </NavLink>
 
       <nav className={styles.navigation} aria-label="Основная навигация">
-        {navLinks.map((item) => {
-          const config = navConfig[item] ?? navConfig["Каталог"];
+        {navLinks.map((item, index) => {
+          const config = navByPosition[index] ?? navByPosition[0];
 
           return (
             <NavLink

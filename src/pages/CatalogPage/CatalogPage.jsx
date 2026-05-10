@@ -12,7 +12,7 @@ import styles from "./CatalogPage.module.css";
 
 function CatalogPage() {
   const dispatch = useDispatch();
-  const { catalogProducts } = useSelector((state) => state.catalog);
+  const { catalogProducts, isLoading } = useSelector((state) => state.catalog);
   const { activeCategory, quantities, searchQuery } = useSelector((state) => state.ui);
 
   const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -28,8 +28,8 @@ function CatalogPage() {
     return categoryMatches && searchMatches;
   });
 
-  const handleAddToCart = (productId) => {
-    dispatch(addToCart(productId, quantities[productId] ?? 1));
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product, quantities[product.id] ?? 1));
   };
 
   return (
@@ -43,6 +43,7 @@ function CatalogPage() {
         </div>
         <div className={styles.catalogMeta}>
           <span>{filteredProducts.length} товаров</span>
+          {isLoading ? <span>Загрузка...</span> : null}
           {activeCategory !== ALL_PRODUCTS_CATEGORY ? (
             <button type="button" onClick={() => dispatch(setActiveCategory(ALL_PRODUCTS_CATEGORY))}>
               Сбросить фильтр
@@ -60,7 +61,7 @@ function CatalogPage() {
               quantity={quantities[item.id] ?? 1}
               onIncrement={() => dispatch(incrementQuantity(item.id))}
               onDecrement={() => dispatch(decrementQuantity(item.id))}
-              onAddToCart={() => handleAddToCart(item.id)}
+              onAddToCart={() => handleAddToCart(item)}
             />
           ))}
         </div>

@@ -29,8 +29,8 @@ function CartPage() {
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  const handleAddToCart = (productId) => {
-    dispatch(addToCart(productId, quantities[productId] ?? 1));
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product, quantities[product.id] ?? 1));
   };
 
   return (
@@ -100,7 +100,7 @@ function CartPage() {
             <span>Итого:</span>
             <strong>{subtotal} Р</strong>
           </div>
-          <Link className={styles.checkoutButton} to="/checkout">
+          <Link className={styles.checkoutButton} to={cartItems.length > 0 ? "/checkout" : "/"}>
             <FontAwesomeIcon icon={faCartShopping} />
             <span>Оформить заказ</span>
           </Link>
@@ -118,7 +118,7 @@ function CartPage() {
               quantity={quantities[item.id] ?? 1}
               onIncrement={() => dispatch(incrementQuantity(item.id))}
               onDecrement={() => dispatch(decrementQuantity(item.id))}
-              onAddToCart={() => handleAddToCart(item.id)}
+              onAddToCart={() => handleAddToCart(item)}
             />
           ))}
         </div>

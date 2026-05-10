@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./CheckoutSummary.module.css";
 
-function CheckoutSummary({ items, showButton = false }) {
+function CheckoutSummary({ items, showButton = false, title = "Состав заказа" }) {
   const totalCount = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <aside className={styles.summary}>
-      <h2 className={styles.title}>Контактные данные</h2>
+      <h2 className={styles.title}>{title}</h2>
 
       <div className={styles.items}>
         {items.map((item) => (
@@ -26,7 +26,7 @@ function CheckoutSummary({ items, showButton = false }) {
         ) : null}
         <div className={styles.line}>
           <span>Сумма:</span>
-          <span>{subtotal} Р</span>
+          <span>{subtotal} ₽</span>
         </div>
         <div className={styles.line}>
           <span>Доставка:</span>
@@ -36,7 +36,7 @@ function CheckoutSummary({ items, showButton = false }) {
 
       <div className={styles.total}>
         <span>Итого:</span>
-        <strong>{subtotal} Р</strong>
+        <strong>{subtotal} ₽</strong>
       </div>
 
       {showButton ? (

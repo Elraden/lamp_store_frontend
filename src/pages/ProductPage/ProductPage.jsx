@@ -42,9 +42,9 @@ function ProductPage() {
       })
     : similarProducts;
 
-  const handleAddToCart = (selectedProductId) => {
-    const quantity = ui.quantities[selectedProductId] ?? 1;
-    dispatch(addToCart(selectedProductId, quantity));
+  const handleAddToCart = (selectedProduct) => {
+    const quantity = ui.quantities[selectedProduct.id] ?? 1;
+    dispatch(addToCart(selectedProduct, quantity));
   };
 
   return (
@@ -72,7 +72,7 @@ function ProductPage() {
           quantity={ui.quantities[product.id] ?? 1}
           onIncrement={() => dispatch(incrementQuantity(product.id))}
           onDecrement={() => dispatch(decrementQuantity(product.id))}
-          onAddToCart={() => handleAddToCart(product.id)}
+          onAddToCart={() => handleAddToCart(product)}
           paymentNote={product.paymentNote}
         />
       </section>
@@ -98,7 +98,7 @@ function ProductPage() {
                 quantity={ui.quantities[item.id] ?? 1}
                 onIncrement={() => dispatch(incrementQuantity(item.id))}
                 onDecrement={() => dispatch(decrementQuantity(item.id))}
-                onAddToCart={() => handleAddToCart(item.id)}
+                onAddToCart={() => handleAddToCart(item)}
               />
             ))}
           </div>
