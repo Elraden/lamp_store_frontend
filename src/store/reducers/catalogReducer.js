@@ -13,18 +13,18 @@ const availabilityLabels = {
   IN_STOCK: "В наличии",
   out_of_stock: "Нет в наличии",
   OUT_OF_STOCK: "Нет в наличии",
-  preorder: "Под заказ",
-  PREORDER: "Под заказ",
+  preorder: "Предзаказ",
+  PREORDER: "Предзаказ",
   discontinued: "Снят с продажи",
   DISCONTINUED: "Снят с продажи",
 };
 
 const normalizeAvailability = (status, stock) => {
-  if (stock <= 0) {
-    return "Нет в наличии";
+  if (status && availabilityLabels[status]) {
+    return availabilityLabels[status];
   }
 
-  return availabilityLabels[status] ?? "В наличии";
+  return stock <= 0 ? "Нет в наличии" : "В наличии";
 };
 
 const findAttributeValue = (attributes, search) =>
@@ -53,6 +53,7 @@ const normalizeProduct = (product) => {
     rating: Number(product.rating),
     image: mainImage?.image_url ?? images[0] ?? placeholderImage,
     images: images.length > 0 ? images : [placeholderImage],
+    availabilityStatus: product.availability_status,
     availability: normalizeAvailability(product.availability_status, product.stock_qty),
     description: product.description,
     paymentNote: "Оплата курьеру при получении",

@@ -69,6 +69,8 @@ function ProductPage() {
         <PurchasePanel
           price={product.price}
           stock={product.stock}
+          availability={product.availability}
+          availabilityStatus={product.availabilityStatus}
           quantity={ui.quantities[product.id] ?? 1}
           onIncrement={() => dispatch(incrementQuantity(product.id))}
           onDecrement={() => dispatch(decrementQuantity(product.id))}

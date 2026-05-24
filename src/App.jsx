@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import CatalogLayout from "./components/CatalogLayout/CatalogLayout";
+import AdminPage from "./pages/AdminPage/AdminPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CatalogPage from "./pages/CatalogPage/CatalogPage";
@@ -16,10 +17,23 @@ import { fetchProducts } from "./store/actions";
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    if (!isAdminRoute) {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, isAdminRoute]);
+
+  if (isAdminRoute) {
+    return (
+      <Routes>
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/*" element={<AdminPage />} />
+      </Routes>
+    );
+  }
 
   return (
     <CatalogLayout>

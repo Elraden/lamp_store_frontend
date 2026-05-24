@@ -1,0 +1,237 @@
+.loginPage {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background: #f4f7f9;
+  color: #13202b;
+}
+
+.loginPanel {
+  width: min(420px, 100%);
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #dde5eb;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(19, 32, 43, 0.12);
+}
+
+.adminPage {
+  min-height: 100vh;
+  padding: 28px;
+  background: #f4f7f9;
+  color: #13202b;
+}
+
+.header,
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #61717f;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.adminPage h1,
+.adminPage h2,
+.loginPanel h1 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.metrics div,
+.section {
+  background: #ffffff;
+  border: 1px solid #dde5eb;
+  border-radius: 8px;
+}
+
+.metrics div {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+}
+
+.metrics span {
+  color: #61717f;
+  font-size: 14px;
+}
+
+.metrics strong {
+  font-size: 28px;
+}
+
+.section {
+  margin-top: 18px;
+  padding: 20px;
+}
+
+.productForm {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.adminPage label,
+.loginPanel label {
+  display: grid;
+  gap: 7px;
+  color: #334451;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.adminPage input,
+.adminPage select,
+.adminPage textarea,
+.loginPanel input {
+  width: 100%;
+  border: 1px solid #cbd6de;
+  border-radius: 6px;
+  padding: 10px 11px;
+  color: #13202b;
+  background: #ffffff;
+  font: inherit;
+}
+
+.adminPage textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.wideField {
+  grid-column: 1 / -1;
+}
+
+.adminPage button,
+.loginPanel button {
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #13202b;
+  background: #ffa300;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.adminPage button:hover,
+.loginPanel button:hover {
+  background: #e08f00;
+}
+
+.secondaryButton {
+  background: #e8eef2;
+}
+
+.secondaryButton:hover {
+  background: #d8e2e9;
+}
+
+.dangerButton {
+  background: #ffe2df;
+  color: #9b1c13;
+}
+
+.dangerButton:hover {
+  background: #ffc8c2;
+}
+
+.error,
+.notice {
+  margin: 12px 0;
+  padding: 12px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.error {
+  color: #9b1c13;
+  background: #ffe2df;
+}
+
+.notice {
+  color: #14532d;
+  background: #dcfce7;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.adminPage table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.adminPage th,
+.adminPage td {
+  padding: 12px;
+  border-bottom: 1px solid #e5edf2;
+  text-align: left;
+  vertical-align: top;
+}
+
+.adminPage th {
+  color: #61717f;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.adminPage td small {
+  display: block;
+  margin-top: 4px;
+  color: #61717f;
+}
+
+.actions,
+.statusControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.statusControl select {
+  min-width: 160px;
+}
+
+@media (max-width: 900px) {
+  .adminPage {
+    padding: 18px;
+  }
+
+  .header,
+  .sectionHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .metrics,
+  .productForm {
+    grid-template-columns: 1fr;
+  }
+}

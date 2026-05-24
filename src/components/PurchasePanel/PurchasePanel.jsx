@@ -5,16 +5,23 @@ import styles from "./PurchasePanel.module.css";
 function PurchasePanel({
   price,
   stock,
+  availability,
+  availabilityStatus,
   quantity,
   onIncrement,
   onDecrement,
   onAddToCart,
   paymentNote,
 }) {
+  const statusClass = styles[`stock_${availabilityStatus}`] ?? styles.stock_unknown;
+  const isPurchasable = !["out_of_stock", "discontinued"].includes(availabilityStatus);
+
   return (
     <aside className={styles.panel}>
       <p className={styles.price}>{price} Р</p>
-      <p className={styles.stock}>в наличии: {stock} шт.</p>
+      <p className={`${styles.stock} ${statusClass}`}>
+        {availability} · остаток: {stock} шт.
+      </p>
 
       <div className={styles.counter}>
         <button type="button" className={styles.counterButton} onClick={onDecrement}>
@@ -30,6 +37,7 @@ function PurchasePanel({
         className={styles.cartButton}
         type="button"
         onClick={onAddToCart}
+        disabled={!isPurchasable}
         aria-label="Добавить в корзину"
       >
         <FontAwesomeIcon icon={faCartShopping} />

@@ -22,8 +22,27 @@
   margin: 0;
   font-size: 0.98rem;
   text-align: right;
-  color: #16a34a;
   font-weight: 700;
+}
+
+.stock_in_stock {
+  color: #16a34a;
+}
+
+.stock_out_of_stock {
+  color: #dc2626;
+}
+
+.stock_preorder {
+  color: #2563eb;
+}
+
+.stock_discontinued {
+  color: #64748b;
+}
+
+.stock_unknown {
+  color: #d97706;
 }
 
 .counter {
@@ -86,6 +105,17 @@
 .cartButton:hover {
   background: #e08f00;
   transform: translateY(-1px);
+}
+
+.cartButton:disabled {
+  cursor: not-allowed;
+  background: #cbd5e1;
+  box-shadow: none;
+}
+
+.cartButton:disabled:hover {
+  background: #cbd5e1;
+  transform: none;
 }
 
 .paymentNote {
