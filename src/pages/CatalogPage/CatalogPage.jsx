@@ -2,17 +2,18 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
   decrementQuantity,
+  fetchProducts,
   incrementQuantity,
   setActiveCategory,
 } from "../../store/actions";
-import { ALL_PRODUCTS_CATEGORY } from "../../mocks/catalog";
+import { ALL_PRODUCTS_CATEGORY } from "../../constants/catalog";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./CatalogPage.module.css";
 
 function CatalogPage() {
   const dispatch = useDispatch();
-  const { catalogProducts, isLoading } = useSelector((state) => state.catalog);
+  const { catalogProducts, error, isLoading } = useSelector((state) => state.catalog);
   const { activeCategory, quantities, searchQuery } = useSelector((state) => state.ui);
 
   const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -52,7 +53,19 @@ function CatalogPage() {
         </div>
       </section>
 
-      {filteredProducts.length > 0 ? (
+      {error && !isLoading ? (
+        <div className={`${styles.emptyState} ${styles.apiErrorState}`}>
+          <div className={styles.emptyIcon}>!</div>
+          <h2>Каталог временно недоступен</h2>
+          <p>
+            Не получилось загрузить товары из API. Проверьте, что backend запущен, и повторите
+            попытку.
+          </p>
+          <button type="button" onClick={() => dispatch(fetchProducts())}>
+            Загрузить ещё раз
+          </button>
+        </div>
+      ) : filteredProducts.length > 0 ? (
         <div className={styles.productsGrid}>
           {filteredProducts.map((item) => (
             <ProductCard

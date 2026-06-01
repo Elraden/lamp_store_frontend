@@ -61,6 +61,55 @@
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 
+.apiErrorState {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  border: 1px solid #ffd27a;
+}
+
+.apiErrorState h2,
+.apiErrorState p {
+  margin: 0;
+}
+
+.apiErrorState h2 {
+  color: #13202b;
+}
+
+.apiErrorState p {
+  max-width: 640px;
+  color: #61717f;
+}
+
+.apiErrorState button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 16px;
+  color: #13202b;
+  background: #ffa300;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.apiErrorState button:hover {
+  background: #e08f00;
+}
+
+.emptyIcon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #13202b;
+  background: #fff3d6;
+  font-size: 24px;
+  font-weight: 900;
+}
+
 @media (max-width: 900px) {
   .productsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

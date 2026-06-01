@@ -1,11 +1,13 @@
-import { catalogData } from "../../mocks/catalog";
+import {
+  ALL_PRODUCTS_CATEGORY,
+  PRODUCT_PLACEHOLDER_IMAGE,
+  catalogShell,
+} from "../../constants/catalog";
 import {
   FETCH_PRODUCTS_FAILURE,
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS,
 } from "../actionTypes";
-
-const placeholderImage = catalogData.catalogProducts[0]?.image ?? "";
 
 const availabilityLabels = {
   available: "В наличии",
@@ -30,6 +32,8 @@ const normalizeAvailability = (status, stock) => {
 const findAttributeValue = (attributes, search) =>
   attributes.find((attribute) => attribute.name.toLowerCase().includes(search))?.value ?? "";
 
+const hiddenCategoryNames = new Set(["Лампочки по акции", "Лампочки по скидке"]);
+
 const normalizeProduct = (product) => {
   const mainImage = product.images?.find((image) => image.is_main) ?? product.images?.[0];
   const images = product.images?.map((image) => image.image_url).filter(Boolean) ?? [];
@@ -51,11 +55,12 @@ const normalizeProduct = (product) => {
     temperature: findAttributeValue(attributes, "темпера"),
     stock: product.stock_qty,
     rating: Number(product.rating),
-    image: mainImage?.image_url ?? images[0] ?? placeholderImage,
-    images: images.length > 0 ? images : [placeholderImage],
+    image: mainImage?.image_url ?? images[0] ?? PRODUCT_PLACEHOLDER_IMAGE,
+    images: images.length > 0 ? images : [PRODUCT_PLACEHOLDER_IMAGE],
     availabilityStatus: product.availability_status,
     availability: normalizeAvailability(product.availability_status, product.stock_qty),
     description: product.description,
+    promotions: product.promotions ?? [],
     paymentNote: "Оплата курьеру при получении",
     specifications:
       specifications.length > 0
@@ -70,24 +75,26 @@ const normalizeProduct = (product) => {
 
 const buildCatalogState = (products, overrides = {}) => {
   const categories = [
-    catalogData.categories[0],
-    ...Array.from(new Set(products.map((product) => product.category))).filter(Boolean),
+    ALL_PRODUCTS_CATEGORY,
+    ...Array.from(new Set(products.map((product) => product.category))).filter(
+      (category) => category && !hiddenCategoryNames.has(category),
+    ),
   ];
   const brands = Array.from(new Set(products.map((product) => product.brand))).filter(Boolean);
 
   return {
-    ...catalogData,
+    ...catalogShell,
     ...overrides,
-    product: products[0] ?? catalogData.product,
+    product: products[0] ?? null,
     catalogProducts: products,
     similarProducts: products.slice(0, 6),
     checkoutItems: [],
     categories,
-    brands: brands.length > 0 ? brands : catalogData.brands,
+    brands,
   };
 };
 
-const initialState = buildCatalogState(catalogData.catalogProducts, {
+const initialState = buildCatalogState([], {
   isLoading: false,
   error: null,
 });
@@ -110,6 +117,11 @@ const catalogReducer = (state = initialState, action) => {
     case FETCH_PRODUCTS_FAILURE:
       return {
         ...state,
+        catalogProducts: [],
+        product: null,
+        similarProducts: [],
+        categories: [ALL_PRODUCTS_CATEGORY],
+        brands: [],
         isLoading: false,
         error: action.payload,
       };

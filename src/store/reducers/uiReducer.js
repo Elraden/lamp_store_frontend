@@ -5,19 +5,13 @@ import {
   SET_ACTIVE_IMAGE,
   SET_SEARCH_QUERY,
 } from "../actionTypes";
-import { ALL_PRODUCTS_CATEGORY, catalogData } from "../../mocks/catalog";
-
-const buildInitialQuantities = () =>
-  catalogData.catalogProducts.reduce((accumulator, item) => {
-    accumulator[item.id] = 1;
-    return accumulator;
-  }, {});
+import { ALL_PRODUCTS_CATEGORY } from "../../constants/catalog";
 
 const initialState = {
   searchQuery: "",
   activeImageIndex: 0,
   activeCategory: ALL_PRODUCTS_CATEGORY,
-  quantities: buildInitialQuantities(),
+  quantities: {},
 };
 
 const uiReducer = (state = initialState, action) => {
