@@ -54,7 +54,7 @@
 
 .metrics {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 12px;
   margin-bottom: 18px;
 }
@@ -86,11 +86,45 @@
   padding: 20px;
 }
 
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  overflow-x: auto;
+}
+
+.adminPage .tabs button {
+  flex: 0 0 auto;
+  background: #e8eef2;
+}
+
+.adminPage .tabs button:hover,
+.tabs .activeTab {
+  background: #ffa300;
+}
+
 .productForm {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin-top: 18px;
+}
+
+.inlineForm,
+.compactForm {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.inlineForm {
+  grid-template-columns: minmax(240px, 420px) auto;
+  align-items: end;
+}
+
+.compactForm {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .adminPage label,
@@ -124,6 +158,28 @@
   grid-column: 1 / -1;
 }
 
+.formActions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.adminPage .checkField {
+  display: flex;
+  grid-template-columns: none;
+  align-items: center;
+  gap: 10px;
+  padding-top: 28px;
+}
+
+.adminPage .checkField input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
 .adminPage button,
 .loginPanel button {
   border: 0;
@@ -141,20 +197,20 @@
   background: #e08f00;
 }
 
-.secondaryButton {
+.adminPage .secondaryButton {
   background: #e8eef2;
 }
 
-.secondaryButton:hover {
+.adminPage .secondaryButton:hover {
   background: #d8e2e9;
 }
 
-.dangerButton {
+.adminPage .dangerButton {
   background: #ffe2df;
   color: #9b1c13;
 }
 
-.dangerButton:hover {
+.adminPage .dangerButton:hover {
   background: #ffc8c2;
 }
 
@@ -185,6 +241,10 @@
   width: 100%;
   border-collapse: collapse;
   min-width: 900px;
+}
+
+.adminPage .compactTable {
+  min-width: 620px;
 }
 
 .adminPage th,
@@ -219,6 +279,124 @@
   min-width: 160px;
 }
 
+.productDetailsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.innerPanel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #dde5eb;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.innerPanel h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.stackList {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.mediaRow,
+.textRow,
+.promotionRow {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #dde5eb;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.mediaRow {
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.mediaRow img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border: 1px solid #dde5eb;
+  border-radius: 6px;
+  background: #eef3f6;
+}
+
+.mediaRow span,
+.textRow span,
+.promotionRow span {
+  display: block;
+  margin-top: 4px;
+  color: #61717f;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.textRow {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.promotionRow {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.promotionRow p {
+  margin: 8px 0 0;
+  color: #334451;
+}
+
+.promotionProducts {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(240px, 1fr) auto;
+  align-items: end;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.tags {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 8px 6px 10px;
+  border-radius: 999px;
+  color: #13202b;
+  background: #fff3d6;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.tags button {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.tags em,
+.emptyText {
+  margin: 0;
+  color: #61717f;
+  font-style: normal;
+}
+
 @media (max-width: 900px) {
   .adminPage {
     padding: 18px;
@@ -231,7 +409,17 @@
   }
 
   .metrics,
-  .productForm {
+  .productForm,
+  .inlineForm,
+  .compactForm,
+  .productDetailsGrid,
+  .promotionProducts {
+    grid-template-columns: 1fr;
+  }
+
+  .mediaRow,
+  .textRow,
+  .promotionRow {
     grid-template-columns: 1fr;
   }
 }

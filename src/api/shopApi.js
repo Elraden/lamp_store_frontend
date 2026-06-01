@@ -35,6 +35,13 @@ const formatFieldPath = (loc = []) =>
         rating: "рейтинг",
         availability_status: "наличие",
         publication_status: "публикация",
+        image_url: "URL изображения",
+        is_main: "главное изображение",
+        value: "значение",
+        discount: "скидка",
+        start_date: "дата начала",
+        end_date: "дата окончания",
+        product_id: "товар",
       };
 
       return labels[part] ?? part;
@@ -156,6 +163,7 @@ export const fetchAdminProductsApi = (token) => adminRequest("/products", token)
 export const fetchAdminOrdersApi = (token) => adminRequest("/orders", token);
 export const fetchAdminCategoriesApi = (token) => adminRequest("/categories", token);
 export const fetchAdminBrandsApi = (token) => adminRequest("/brands", token);
+export const fetchAdminPromotionsApi = (token) => adminRequest("/promotions", token);
 
 export const createAdminProductApi = (token, payload) =>
   adminRequest("/products", token, {
@@ -171,6 +179,102 @@ export const updateAdminProductApi = (token, productId, payload) =>
 
 export const deleteAdminProductApi = (token, productId) =>
   adminRequest(`/products/${productId}`, token, {
+    method: "DELETE",
+  });
+
+export const createAdminProductImageApi = (token, productId, payload) =>
+  adminRequest(`/products/${productId}/images`, token, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+export const updateAdminProductImageApi = (token, productId, imageId, payload) =>
+  adminRequest(`/products/${productId}/images/${imageId}`, token, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+
+export const deleteAdminProductImageApi = (token, productId, imageId) =>
+  adminRequest(`/products/${productId}/images/${imageId}`, token, {
+    method: "DELETE",
+  });
+
+export const createAdminProductAttributeApi = (token, productId, payload) =>
+  adminRequest(`/products/${productId}/attributes`, token, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+export const updateAdminProductAttributeApi = (token, productId, attributeId, payload) =>
+  adminRequest(`/products/${productId}/attributes/${attributeId}`, token, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+
+export const deleteAdminProductAttributeApi = (token, productId, attributeId) =>
+  adminRequest(`/products/${productId}/attributes/${attributeId}`, token, {
+    method: "DELETE",
+  });
+
+export const createAdminCategoryApi = (token, payload) =>
+  adminRequest("/categories", token, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+export const updateAdminCategoryApi = (token, categoryId, payload) =>
+  adminRequest(`/categories/${categoryId}`, token, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+
+export const deleteAdminCategoryApi = (token, categoryId) =>
+  adminRequest(`/categories/${categoryId}`, token, {
+    method: "DELETE",
+  });
+
+export const createAdminBrandApi = (token, payload) =>
+  adminRequest("/brands", token, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+export const updateAdminBrandApi = (token, brandId, payload) =>
+  adminRequest(`/brands/${brandId}`, token, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+
+export const deleteAdminBrandApi = (token, brandId) =>
+  adminRequest(`/brands/${brandId}`, token, {
+    method: "DELETE",
+  });
+
+export const createAdminPromotionApi = (token, payload) =>
+  adminRequest("/promotions", token, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+export const updateAdminPromotionApi = (token, promoId, payload) =>
+  adminRequest(`/promotions/${promoId}`, token, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+
+export const deleteAdminPromotionApi = (token, promoId) =>
+  adminRequest(`/promotions/${promoId}`, token, {
+    method: "DELETE",
+  });
+
+export const addAdminPromotionProductApi = (token, promoId, payload) =>
+  adminRequest(`/promotions/${promoId}/products`, token, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+export const deleteAdminPromotionProductApi = (token, promoId, productId) =>
+  adminRequest(`/promotions/${promoId}/products/${productId}`, token, {
     method: "DELETE",
   });
 
