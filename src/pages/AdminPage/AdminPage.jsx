@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import {
   addAdminPromotionProductApi,
   adminLoginApi,
@@ -1457,7 +1459,7 @@ function AdminPage() {
                               handleRemovePromotionProduct(promotion.promo_id, product.product_id)
                             }
                           >
-                            x
+                            <FontAwesomeIcon icon={faXmark} />
                           </button>
                         </span>
                       ))}
