@@ -82,4 +82,24 @@ npm run build
 
 ## Docker
 
-Для запуска через Docker можно использовать файлы `Dockerfile`, `docker-compose.yml` и `nginx.conf` из корня фронтенд-проекта.
+Фронтенд можно собрать и запустить в Docker через `docker-compose.yml`. По умолчанию приложение будет доступно на `http://localhost:5173`, а API Gateway ожидается на `http://localhost:8000`.
+
+Запуск с адресом API по умолчанию:
+
+```bash
+docker compose up --build
+```
+
+Запуск с явным адресом API Gateway:
+
+```bash
+VITE_API_GATEWAY_URL=http://localhost:8000 docker compose up --build
+```
+
+На Windows PowerShell переменную можно передать так:
+
+```powershell
+$env:VITE_API_GATEWAY_URL="http://localhost:8000"; docker compose up --build
+```
+
+Production-сборка выполняется внутри `Dockerfile`, после чего статические файлы раздаются через `nginx.conf`.
